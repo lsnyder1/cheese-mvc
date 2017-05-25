@@ -11,7 +11,11 @@
 
 
 <ul>
-    <li th:each="cheese : ${cheeses}" th:text="${cheese}"></li>
+    <li th:each="cheese : ${cheeses}">
+        <p th:text="${cheese.key}"/>
+        <p th:text="${cheese.value}"/>
+    </li>
+
 </ul>
 </body>
 </html>
