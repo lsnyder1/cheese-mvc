@@ -70,9 +70,14 @@ public class CheeseController {
 
 
     }
-    //@RequestMapping(value = "edit", method =RequestMethod.POST)
-    //public String processEditForm(int cheeseId, String name, String description){
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditForm(@RequestParam int cheeseId, String name, String description){
+        Cheese editCheese = CheeseData.getById(cheeseId);
+        editCheese.setName(name);
+        editCheese.setDescription(description);
+
+        return "redirect:";
 
 
-    //}
+    }
 }

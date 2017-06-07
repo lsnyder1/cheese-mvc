@@ -6,7 +6,7 @@
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-<form method = "post" style="max-width:600px;">
+<form action="/cheese/edit" method = "post" style="max-width:600px;">
     <div class="form-group">
         <label for="name-field">Name</label>
         <input class="form-control" id="name-field" type="text" name="name" th:value="${cheese.name}" />
@@ -15,8 +15,10 @@
         <label for="desc-field">Description</label>
         <input class="form-control" id="desc-field" type="text" name="description" th:value="${cheese.description}" />
     </div>
+
+    <input type="hidden" name="cheeseId" th:value="${cheese.cheeseId}" />
+
     <input type="submit" value="Edit Cheese" />
-    <input type="hidden" th:value="${cheese.cheeseId}" name="cheeseId" />
 </form>
 
 </body>
