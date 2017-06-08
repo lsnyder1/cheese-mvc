@@ -6,16 +6,16 @@ import java.util.Date;
  * Created by lonny on 6/7/2017.
  */
 public class User {
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private int id;
     private static int nextId = 1;
     private Date dateCreated = new Date();
 
-    public User(String userName, String email, String password, Date dateCreated) {
+    public User(String username, String email, String password, Date dateCreated) {
         this();
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
 
@@ -27,12 +27,12 @@ public class User {
         nextId++;}
 
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getEmail() {
