@@ -9,10 +9,12 @@ public class CheeseData {
     static ArrayList<Cheese> cheeses = new ArrayList<>();
 
     public static ArrayList<Cheese> getAll(){
+
         return cheeses;
     }
 
     public static void add(Cheese newCheese){
+
         cheeses.add(newCheese);
     }
     public static void remove(int id){

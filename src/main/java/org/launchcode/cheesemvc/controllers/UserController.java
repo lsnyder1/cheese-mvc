@@ -16,8 +16,6 @@ public class UserController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddUserForm(Model model){
-        model.addAttribute("user", new User());
-        model.addAttribute("title", "Sign Up");
         return "user/add";
     }
     @RequestMapping(value ="add", method = RequestMethod.POST)
