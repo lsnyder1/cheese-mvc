@@ -18,6 +18,7 @@ import javax.validation.Valid;
 @RequestMapping("user")
 public class UserController {
 
+
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddUserForm(Model model){
         model.addAttribute((new User()));
@@ -26,8 +27,9 @@ public class UserController {
     }
     @RequestMapping( value ="add", method = RequestMethod.POST)
     public String add(@ModelAttribute @Valid User user,Errors errors, Model model, String verify){
+        String error3;
         model.addAttribute("user",user);
-        String error3="Your passwords do not match.";
+
         boolean passwordsMatch = true;
         if (errors.hasErrors()){
             model.addAttribute("user", user);
@@ -37,6 +39,7 @@ public class UserController {
         if (user.getPassword() == null || verify == null
                 || !user.getPassword().equals(verify)) {
             passwordsMatch = false;
+            error3="Your passwords do not match.";
             model.addAttribute("error3", error3);
         }
         if (passwordsMatch){

@@ -80,7 +80,7 @@ public class CheeseController {
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String processEditForm(@ModelAttribute @Valid Cheese newCheese,Errors errors,Model model){
         if (errors.hasErrors()){
-            model.addAttribute("title", "Edit Cheese" + newCheese.getName());
+            model.addAttribute("title", "Edit Cheese " + newCheese.getName());
             //Cheese cheese = CheeseData.getById(cheeseId);
             model.addAttribute("cheese",newCheese);
             model.addAttribute("cheeseTypes", CheeseType.values());
