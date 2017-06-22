@@ -1,17 +1,15 @@
 package org.launchcode.cheesemvc.controllers;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.launchcode.cheesemvc.models.Cheese;
-import org.launchcode.cheesemvc.models.CheeseData;
 import org.launchcode.cheesemvc.models.CheeseType;
+import org.launchcode.cheesemvc.models.data.CheeseDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-
 
 
 /**
@@ -21,12 +19,15 @@ import java.util.ArrayList;
 @RequestMapping("cheese")
 public class CheeseController {
 
+    @Autowired
+    private CheeseDao cheeseDao;
+
 
     @RequestMapping(value="")
 
     public String index(Model model) {
 
-        model.addAttribute("cheeses", CheeseData.getAll());
+        model.addAttribute("cheeses", cheeseDao.findAll());
         model.addAttribute("title","My Cheeses");
         return "cheese/index";
     }
@@ -46,14 +47,14 @@ public class CheeseController {
             model.addAttribute("title","Add Cheese");
             return "cheese/add";
         }
-        CheeseData.add(newCheese);
+        cheeseDao.save(newCheese);
         return "redirect:";
 
 
     }
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveCheeseForm(Model model) {
-        model.addAttribute("cheeses", CheeseData.getAll());
+        model.addAttribute("cheeses", cheeseDao.findAll());
         model.addAttribute("title", "Remove Cheese");
         return "cheese/remove";
     }
@@ -62,12 +63,12 @@ public class CheeseController {
     public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
 
         for (int cheeseId : cheeseIds) {
-            CheeseData.remove(cheeseId);
+            cheeseDao.delete(cheeseId);
         }
 
         return "redirect:";
     }
-    @RequestMapping(value ="edit/{cheeseId}", method = RequestMethod.GET)
+    /*@RequestMapping(value ="edit/{cheeseId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int cheeseId){
         Cheese cheese = CheeseData.getById(cheeseId);
         model.addAttribute("cheeseTypes", CheeseType.values());
@@ -96,5 +97,5 @@ public class CheeseController {
         return "redirect:";
 
 
-    }
+    }*/
 }
